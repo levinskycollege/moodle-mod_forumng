@@ -149,7 +149,7 @@ class mod_forumng_renderer extends plugin_renderer_base {
      */
     public function render_discussion_list_item(mod_forumng_discussion $discussion,
             $groupid, $last) {
-        global $CFG;
+        global $CFG, $DB;
         $showgroups = $groupid == mod_forumng::ALL_GROUPS;
 
         // Work out CSS classes to use for discussion
@@ -208,10 +208,27 @@ class mod_forumng_renderer extends plugin_renderer_base {
                 $result .= "<span class='accesshide'>$alt:</span> ";
             }
         }
-        $result .= "<a href='discuss.php?" .
-                $discussion->get_link_params(mod_forumng::PARAM_HTML) . "'>" .
-                format_string($discussion->get_subject(), true, $courseid) . "</a></td>";
+        //print_object($discussion);
+        //print_object($discussion->get_attachment_names());
+        $firstpost = $DB->get_record('forumng_posts',array('discussionid'=>$discussion->get_id(),'parentpostid'=>null));
 
+        if ($firstpost->attachments == 1) {
+            $result .= $this->output->pix_icon('attachment', 'attachment','forumng',array('class'=>'attachment','id'=>'idattachment_'.$discussion->get_id()) );
+        }
+
+            $result .= "<a href='discuss.php?" .
+            $discussion->get_link_params(mod_forumng::PARAM_HTML) . "'>" .
+            format_string($discussion->get_subject(), true, $courseid) . "</a></td>";
+
+        //nadav tree
+       // $result .= $this->output->pix_icon('t/switch_plus', 'discussiontree','moodle',array('class'=>'discussiontreeicons','id'=>'idt_'.$discussion->get_id()) );
+
+        //$result .= "<a href='discuss.php?" .
+               // $discussion->get_link_params(mod_forumng::PARAM_HTML) . "'>" .
+               // format_string($discussion->get_subject(), true, $courseid) . "</a>";
+       // $result .= '<div id="dt_'.$discussion->get_id().'" class="discussiontree"></div>';
+       // $result .= "</td>";
+        //nadav tree
         // Author
         $poster = $discussion->get_poster();
         $picture = $this->user_picture($poster, array('courseid' => $courseid));
@@ -219,8 +236,14 @@ class mod_forumng_renderer extends plugin_renderer_base {
             // Strip course id if shared forum.
             $picture = str_replace('&amp;course=' . $courseid, '', $picture);
         }
+        // Display teacher icon if the user is a teacher  (nadavkav 13-5-2013)
+        if (has_capability('moodle/course:manageactivities', $discussion->get_forum()->get_context(), $poster->id)) {
+            $roleimage = '<img height=16 width=16 src="pix/teacher.png" id="teachericon">';
+        } else {
+            $roleimage = ''; // student, no need to display any indication
+        }
         $result .= "<td class='forumng-startedby cell c1'>" .
-            $picture . $discussion->get_forum()->display_user_link($poster) . "</td>";
+            $picture . $discussion->get_forum()->display_user_link($poster) .$roleimage . "</td>";
 
         $num = 2;
 
@@ -495,6 +518,7 @@ class mod_forumng_renderer extends plugin_renderer_base {
     public function render_intro($forum) {
         // Don't output anything if no text, so we don't get styling around
         // something blank
+        $groupid='';
         $text = $forum->get_intro();
         if (trim($text) === '') {
             return '';
@@ -507,10 +531,20 @@ class mod_forumng_renderer extends plugin_renderer_base {
         $intro = format_module_intro(
                 'forumng', $activity, $forum->get_course_module_id(true));
 
+		$buttons = '<div id= "forumng-buttons"><form action="editpost.php" method="get" ' .
+					'class="forumng-post-button"><div>' .
+					$forum->get_link_params(mod_forumng::PARAM_FORM) .
+					($groupid != mod_forumng::NO_GROUPS
+						? '<input type="hidden" name="group" value="' . (int)$groupid . '" />'
+						: '') .
+					'<input type="submit" value=""/></div></form>' .
+					$this->render_paste_button($forum, $groupid) . '</div>';
+
         // Box styling appears to be consistent with some other modules
-        $intro = html_writer::tag('div', $intro, array('class' => 'generalbox box',
+        $intro = html_writer::tag('div', $intro.$buttons, array('class' => 'generalbox box',
                 'id' => 'intro'));
 
+        // add new discussion button to the left of the forum intro
         return $intro;
     }
 
@@ -527,8 +561,7 @@ class mod_forumng_renderer extends plugin_renderer_base {
                 ($groupid != mod_forumng::NO_GROUPS
                     ? '<input type="hidden" name="group" value="' . (int)$groupid . '" />'
                     : '') .
-                '<input type="submit" value="' .
-                get_string('addanewdiscussion', 'forumng') . '" /></div></form>' .
+                '<input type="submit" value="" /></div></form>' .
                 $this->render_paste_button($forum, $groupid) . '</div>';
     }
 
@@ -1078,6 +1111,8 @@ class mod_forumng_renderer extends plugin_renderer_base {
                     '(?!(http:|www\.)).*?</a>~', "$0 [$1]", $message);
                 }
                 $out .= $lf . '<div class="forumng-message">' . $message . '</div>';
+                $wordcount = substr_count(strip_tags($message),' ');
+                $out .= get_string('wordcount')." ($wordcount)";
             } else {
                 $out .= $post->get_email_message();
                 $out .= "\n\n";
@@ -1150,7 +1185,7 @@ class mod_forumng_renderer extends plugin_renderer_base {
 
                 //Direct link
                 if ($options[mod_forumng_post::OPTION_COMMAND_DIRECTLINK]) {
-                    $commandsarray['forumng-permalink'] = '<a href="discuss.php?' .
+                    $commandsarray['forumng-permalink'] = '<a onclick="alert(\'Please Right click this link and use CTRL-C to copy the URL\');" href="discuss.php?' .
                             $discussion->get_link_params(mod_forumng::PARAM_HTML) . '#p' .
                             $post->get_id() . '" title="' .
                             get_string('directlinktitle', 'forumng').'">' .
@@ -1541,6 +1576,15 @@ class mod_forumng_renderer extends plugin_renderer_base {
     }
 
     /**
+     * Print a message explaining why a user cannot start a discussion.
+     *
+     * @param string $message the identifier for the message to display.
+     */
+    public function cannot_start_discussion_error($message) {
+        return '<p class="forumng-cannotstartdiscussion">' . get_string($message, 'forumng') . '</p>';
+    }
+
+    /**
      * Compiles the html message content for the rejection email.
      *
      * @param object $group The details of one group
@@ -1569,4 +1613,11 @@ class mod_forumng_renderer extends plugin_renderer_base {
         return html_writer::tag('div', htmlentities($messagehtml, ENT_QUOTES),
                 array('id' => 'delete-form-html'));
     }
+    public function has_attachments() {
+        return $this->postfields->attachments ? true : false;
+    }
+
+
+
+
 }

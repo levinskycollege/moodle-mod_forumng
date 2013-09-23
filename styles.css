@@ -127,7 +127,7 @@ a.forumng-iconlink:hover {
 form.forumng-paste-buttons {
     margin-left: 0.85em;
     padding: 0.7em 0.5em;
-    background: #FFD991;
+    background: #d1ee9e;
 }
 .ie7 form.forumng-paste-buttons {
     padding: 0.5em 0.5em;
@@ -246,6 +246,9 @@ div.forumng-flag {
     padding-right: 0.5em;
 }
 
+forumng-flag  input[type="image"] {
+	background:none;
+}
 form.forumng-flag {
     display: inline;
     padding-left: 0.5em;
@@ -274,11 +277,72 @@ form.forumng-flag div {
 
 #forumng-arrowback {
     margin: 1em 0;
+/*	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+*/
+
+	-moz-box-shadow:inset 0px 1px 0px 0px #d6d6d6;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d6d6d6;
+	box-shadow:inset 0px 1px 0px 0px #d6d6d6;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fdd147), color-stop(1, #fc852c) );
+	background:-moz-linear-gradient( center top, #fdd147 5%, #fc852c 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd147', endColorstr='#fc852c');
+	background-color:#ffec64;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #cacaca;
+	display:inline-block;
+	font-family:arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #414141;
+	width:auto;
+	height:22px;
+	}
+
+#forumng-arrowback:hover {
+	/*background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;*/
+
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fed529), color-stop(1, #fd8117) );
+	background:-moz-linear-gradient( center top, #fed529 5%, #fd8117 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fed529', endColorstr='#fd8117');
+	background-color:#fd8117;
 }
+
+#forumng-arrowback:active {
+	position:relative;
+	top:1px;
+}
+
+#forumng-arrowback a span {color:#fff;}
 
 .forumng-replies {
     margin-left: 40px;
 }
+.dir-rtl .forumng-replies {margin-right: 40px;margin-left: auto;}
 
 h2.accesshide {
     margin: 0 0 5px 40px;
@@ -325,8 +389,15 @@ h2.forumng-author {
 }
 
 .forumng-pic {
-    float:left;
-    width:35px;
+    float:none;
+    width:64px;
+	height:64px;
+}
+
+.forumng-pic a img {
+	height:64px;
+	width:64px;
+	border: 1px solid #efefef;
 }
 .forumng-subject,
 .forumng-info,
@@ -339,6 +410,7 @@ h2.forumng-author {
 .forumng-info {
     position: relative;
     padding-right: 16px;
+	/*top:32px;*/
 }
 .forumng-info .forumng-flag {
     position: absolute;
@@ -367,6 +439,10 @@ h2.forumng-author {
     color: #7f98b2;
 }
 
+.forumng-deselected a:link /* 07 04 2013 eran co. */
+{
+    color: #ededed;
+}
 .forumng-summary .forumng-text {
     display:inline;
 }
@@ -391,7 +467,8 @@ h3.forumng-subject {
     margin-top:0.5em;
 }
 .forumng-postmain {
-    margin-left:35px;
+    margin-left:8px;
+	margin-bottom:8px;
     padding-left:0.5em;
     padding-top:0.5em;
 }
@@ -403,12 +480,13 @@ ul.forumng-commands {
     display: inline;
     margin: 0;
     padding: 0;
+	padding-right:1px;
     white-space: nowrap;
 }
 ul.forumng-commands li {
     display:inline;
     list-style-type:none;
-    margin:0 0 0 2em;
+    margin:0 0 0 0.4em;
     padding:0;
 }
 ul.forumng-commands li {
@@ -422,14 +500,14 @@ ul.forumng-commands li.forumng-replylink {
 }
 
 .forumng-post.forumng-important {
-    background-color: #F0E1B3;
+    background-color: #d9eb0d;
 }
 
 .forumng-post.forumng-read {
     color:#222;
 }
 .forumng-post.forumng-unread {
-    background: #FFD991;
+    background: #d1ee9e;
 }
 
 .forumng-post.forumng-unread .forumng-info {
@@ -437,7 +515,7 @@ ul.forumng-commands li.forumng-replylink {
 }
 
 .forumng-lockmessage .forumng-post {
-    background: #FFBBBB;
+    background: #9fb5bb;
     margin-bottom: 2em;
 }
 
@@ -533,38 +611,52 @@ ul.forumng-commands li.forumng-replylink {
 ////////////////////////////////////
 */
 
-#page-mod-forumng-discuss iframe.forumng-inlineform {
-    border: none;
-    overflow-x: auto;
-}
-.forumng-iframe#page-mod-forumng-editpost fieldset {
-    border: none;
+#page-mod-forumng-discuss .mform {
     padding: 0;
-    margin: 0;
+    display: none;
+    margin-bottom: 1em;
 }
-.forumng-iframe#page-mod-forumng-editpost textarea {
+#page-mod-forumng-discuss .mform textarea {
     width: 99%;
 }
-.forumng-iframe#page-mod-forumng-editpost {
-    padding: 0;
+
+.ie#page-mod-forumng-discuss .mform {
+    margin-top: 0.5em;
 }
-.forumng-iframe#page-mod-forumng-editpost .advancedbutton {
-    margin: 0;
+
+#page-mod-forumng-discuss .mform fieldset {
+    padding-top: 5px;
+    margin-bottom: 0;
 }
-.forumng-iframe#page-mod-forumng-editpost .fcontainer {
-    margin-right: 0;
-    margin-left: 0;
-}
-.forumng-iframe#page-mod-forumng-editpost .fm-empty-container,
-.forumng-iframe#page-mod-forumng-editpost .dndupload-target {
+#page-mod-forumng-discuss .mform fieldset.hidden,
+#page-mod-forumng-discuss .mform fieldset.hidden fieldset.fgroup {
+    margin-top: 0;
     padding-top: 0;
 }
-.forumng-iframe#page-mod-forumng-editpost .filemanager-container {
-    min-height: 40px;
+
+#page-mod-forumng-discuss .mform fieldset .advancedbutton,
+#page-mod-forumng-discuss .mform fieldset legend {
+    display: none;
 }
-.forumng-iframe#page-mod-forumng-editpost .dndupload-arrow,
-#page-mod-forumng-editpost .fp-pathbar,
-.forumng-iframe#page-mod-forumng-editpost .fp-pathbar {
+
+#page-mod-forumng-discuss fieldset#id_importance {
+    margin-top: 0;
+    padding-top: 0;
+}
+#page-mod-forumng-discuss fieldset#id_attachments {
+    padding-bottom: 0;
+}
+
+#page-mod-forumng-discuss .mform .fhtmleditor {
+    margin: 0;
+    padding: 5px 14px 0 10px;
+    width: auto;
+}
+#page-mod-forumng-discuss .mform .fhtmleditor textarea {
+    width: 100%;
+    margin: 0;
+}
+#page-mod-forumng-discuss .mform .fdescription.required {
     display: none;
 }
 
@@ -615,6 +707,10 @@ ul.forumng-commands li.forumng-replylink {
 .forumng-ratings {
     display:inline;
     font-size: 0.85em;
+	padding-right:0px; /* eran 02 apr 2013 */
+}
+.forumng-ratings img {/* eran 02 apr 2013 */
+	padding-right:1px;
 }
 .forumng-ratings select,
 .forumng-ratings input {
@@ -630,6 +726,10 @@ ul.forumng-commands li.forumng-replylink {
 }
 .forumng-ratings .forumng-editrating {
     display:inline;
+}
+
+.forumng-editrating{
+height:18px;
 }
 
 .forumng-ratings img {
@@ -684,7 +784,7 @@ form.markread input {
 }
 
 #forumng-features form {
-    margin-right: 1em;
+    margin-right: 0.1em;
 }
 #forumng-features form,
 #forumng-features div,
@@ -693,7 +793,7 @@ form.markread input {
     display:inline;
 }
 #forumng-features .forumng-highlight {
-    background: #FFD991;
+    background: #d1ee9e;
     padding: 0.7em 0.5em;
 }
 
@@ -732,6 +832,9 @@ form.markread input {
 #page-mod-forumng-feature-readers-readers .generaltable {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+#page-mod-forumng-feature-readers-readers .generaltable tr th {
+padding-top: 12px;
 }
 
 /*
@@ -897,40 +1000,260 @@ padding-top: 1em;
     vertical-align: -3px;
 }
 
-#delete-form-html {
-    display: none;
+/* RTL
+*/
+#page-mod-forumng-view.dir-rtl .generaltable th {text-align: right;}
+
+
+/* ///// ERAN ///// */
+#page-mod-forumng-view.dir-rtl .generaltable th.header.c0 {padding-right: 7px;}
+#page-mod-forumng-view.dir-rtl .generaltable th.header.c2 {text-align: center;}
+#page-mod-forumng-view.dir-rtl .generaltable th.header.c3 {text-align: center;}
+#page-mod-forumng-view.dir-rtl .generaltable th.header.c4 {text-align: center;}
+
+#page-mod-forumng-view.dir-rtl .generaltable th {text-align: right;}
+#page-mod-forumng-view .generaltable th {
+    /*background-image: url("http://testmoodle2.levinsky.ac.il/mod/forumng/pix/title_bg_55.png");
+    background-position: left top;
+    background-repeat: repeat-x;*/
+    height: 44px;
+    padding-top: 7px;
+    text-align: right;
+
+background: #004a89; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI1JSIgc3RvcC1jb2xvcj0iIzAwNGE4OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUlIiBzdG9wLWNvbG9yPSIjZGRkZmUzIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNiUiIHN0b3AtY29sb3I9IiNhMmE1YTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI5OSUiIHN0b3AtY29sb3I9IiNkYmRjZTIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI5OSUiIHN0b3AtY29sb3I9IiNiYmJiYmIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #004a89 5%, #dddfe3 5%, #a2a5a5 6%, #dbdce2 99%, #bbbbbb 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#004a89), color-stop(5%,#dddfe3), color-stop(6%,#a2a5a5), color-stop(99%,#dbdce2), color-stop(99%,#bbbbbb)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #004a89 5%,#dddfe3 5%,#a2a5a5 6%,#dbdce2 99%,#bbbbbb 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #004a89 5%,#dddfe3 5%,#a2a5a5 6%,#dbdce2 99%,#bbbbbb 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #004a89 5%,#dddfe3 5%,#a2a5a5 6%,#dbdce2 99%,#bbbbbb 99%); /* IE10+ */
+background: linear-gradient(to bottom,  #004a89 5%,#dddfe3 5%,#a2a5a5 6%,#dbdce2 99%,#bbbbbb 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004a89', endColorstr='#bbbbbb',GradientType=0 ); /* IE6-8 */
+
 }
 
-/*
-// forumfeature save grades
-///////////////////////////
+
+forumng-sortlink th a{color:#efefef;}
+
+
+
+.forumng-attachments img {padding-right: 12px;}
+
+/* post page view */
+#page-mod-forumng-discuss h2.forumng-author {display:block;position: relative;top:103px;left:80px;white-space: normal;width:88px;}
+#page-mod-forumng-discuss h3.forumng-subject {padding-right: 30px; }
+#page-mod-forumng-discuss .forumng-postmain {padding-right: 35px}
+#page-mod-forumng-discuss .forumng-postfooter {background-color: #c9e438; height: 51px; margin-top: 4px; padding:4px; padding-top:8px; color: #3f5a11}
+#page-mod-forumng-discuss .forumng-post-outerbox {margin-right: 80px;}
+#page-mod-forumng-discuss .forumng-pic {float: none;top:1px;}
+#page-mod-forumng-discuss .forumng-info {margin-right: 70px;margin-top: -110px;}
+#page-mod-forumng-discuss .forumng-post {background-color: #ebebeb;min-height: 100px;}
+#page-mod-forumng-discuss .forumng-message {background-color: white;padding: 10px;}
+
+#page-mod-forumng-discuss h3.forumng-subject {
+    background-image: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/arrow_box.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    padding-right: 22px;
+    margin-right: 11px;
+    top: 38px;
+    position: relative;
+}
+#page-mod-forumng-discuss .forumng-postmain {padding-top: 33px;}
+
+
+
+.userpicture, .defaultuserpic {margin:4px; }
+.generaltable{ direction:rtl; text-align:right; }
+.generaltable tr, .generaltable td { font-size: 14px;}
+.generaltable td { padding-right: 3px; padding-left: 3px;}
+.forumng-lastpost {font-size:11px;}
+.forumng-sticky{ background-color:#f6f6f6;}
+.forumng-sticky #teachericon{ background-color:#f6f6f6;}
+.c2, .c3 {text-align:center;}
+.forumng-sticky {padding:0px; margin:0px;}
+.forumng-startedby a, .forumng-startedby img {vertical-align:middle; color:#464646; font-size: 10px;}
+.header{ height:49px; margin:0px; padding:0px;}
+.forumng-sortlink{ color:#464646; text-decoration:none;}
+.forumng-sortlink th a { color:#efefef; text-decoration:none;} /* 7/4/32013 eran co. */
+.forumng-sortlink:hover{ color:#242424; text-decoration:underline;}
+.forumng-subject{color:#464646;}
+#page-mod-forumng-view .generalbox .box {border:none;}
+#page-mod-forumng-view .no-overflow{background-color:#fefefe; width:100%; height: 128px; border:none;}
+.forumng-post-button input[type="submit"] { width:280px; height:55px; background:url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/create_discussion_small.png) top left no-repeat; border:none; margin-left: 0px;}
+/*#page-mod-forumng-view .generaltable th {text-align: right;}
 */
-.savegradeform .savegradesbutton {
-    margin-bottom: 10px;
-}
-#page-mod-forumng-feature-userposts-list .generaltable {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-#page-mod-forumng-feature-userposts-list .generaltable td {
-    color: gray;
-}
-#page-mod-forumng-feature-userposts-list .generaltable td div.active {
-    color: black;
+
+#page-mod-forumng-view .region-content {background-color: #eaeaea}
+#page-mod-forumng-view .forumng-main {margin: 20px;}
+#page-mod-forumng-view #intro {background-color: white; padding: 25px;}
+#page-mod-forumng-view .forumng-flagged-link {display: none;}
+#page-mod-forumng-view .generalbox {    border: none; }
+#page-mod-forumng-view #forumng-buttons {float: left;}
+#page-mod-forumng-view #intro .no-overflow {overflow:hidden;overflow-y: auto;height: 185px;text-align: justify;}
+#page-mod-forumng-view #forumng-buttons {margin-top: -2.4em;}
+#page-mod-forumng-view .groupselector {margin-right: 32px;margin-top: 15px;}
+#page-mod-forumng-view a.forumng-sortlink:link, a.forumng-sortlink:visited {text-decoration: underline;}
+#page-mod-forumng-view tr.forumng-discussion-short {border-bottom: 1px #ababab;border-bottom-style: dashed;}
+#page-mod-forumng-view .forumng-startedby a, #page-mod-forumng-view .forumng-startedby img {font-size: 14px;}
+#page-mod-forumng-view .forumng-subject img { float: right;}
+#page-mod-forumng-view .generaltable td {vertical-align: middle;}
+#page-mod-forumng-view .forumng-subject img {float: right;height: 24px;padding-left: 8px;margin-right:0px;}
+#page-mod-forumng-view .forumng-unreadcount input[type=image] {background-color: transparent;}
+#page-mod-forumng-view td.forumng-unreadcount a {position: relative;
+    left: -24px;
+    font-weight: bold;
+    color: white;
+    top: -17px;
+    font-size: 10px;}
+
+#page-mod-forumng-view.safari td.forumng-unreadcount a {
+        left: 0px;
+        top: 17px;
 }
 
-/*
-// Discusion selector
+#page-mod-forumng-view.gecko td.forumng-unreadcount a {
+    left: 14px;
+    top: 17px;
+}
+
+#page-mod-forumng-view .forumng-main > #forumng-buttons
+{
+    top: -30px;
+    position: relative;
+    left: -280px;
+}
+#page-mod-forumng-discuss .forumng-attachments li a {color: #1976e0; text-decoration: none; font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss .forumng-attachments li a:hover {text-decoration: underline; font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li a {color: #3f5a11; font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-edit {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/edit.png) top right no-repeat;
+    border:none;
+    margin-left: 8px;
+    padding-right: 20px;
+    padding-top: 3px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-replylink {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/add_post.png) top right no-repeat;
+    border:none;
+    margin-left: 8px;
+    padding-right: 23px;
+    padding-top: 1px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-alert {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/alert.png) top right no-repeat;
+    border:none;
+    margin-left: 8px;
+    padding-right: 23px;
+    padding-top: 3px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-permalink {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/permalink.png) top right no-repeat;
+    border:none;
+    margin-left: 8px;
+    padding-right: 23px;
+    padding-top: 1px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-split {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/split.png) top right no-repeat;
+	font-size:14px; /* eran 02 apr 2013 */
+    border:none;
+    margin-left: 8px;
+    padding-right: 23px;
+    padding-top: 1px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-delete {
+    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/delete.png) top right no-repeat;
+    border:none;
+    margin-left: 8px;
+    padding-right: 23px;
+    padding-top: 1px;
+    vertical-align: middle;}
+
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-replylink a {font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-edit a {font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-permalink a {font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-split a {font-size:14px; /* eran 02 apr 2013 */}
+#page-mod-forumng-discuss ul.forumng-commands li.forumng-delete a {font-size:14px; /* eran 02 apr 2013 */}
+
+
+
+#page-mod-forumng-discuss .forumng-pic {
+    /*background-color: none;*/
+    border: 0px solid #ededed;
+    float: none;
+    padding: 0px;
+    position: relative;
+    top: 1px;
+}
+
+#page-mod-forumng-discuss .forumng-postmain {
+    background-color: white;
+    margin-right: 20px;
+    padding-right: 0px;
+    border: 1px solid #C4C4C4;
+}
+#page-mod-forumng-discuss .forumng-postmain {padding-left: 0px;}
+
+/* Firefox (Mozilla) only rules...
 */
-.path-mod-forumng-feature #discsel .generaltable {
-    width: 100%;
+@-moz-document url-prefix() {
+    #page-mod-forumng-view td.forumng-unreadcount a { left: 31px; }
+    #page-mod-forumng-discuss .forumng-postfooter {height: 44px;}
 }
-.path-mod-forumng-feature #discsel .generaltable td.dselect {
-    text-align: center;
+
+#forumng-features form input[type="submit"] {
+background: #f6f8f9; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y2ZjhmOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2U1ZWJlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2Q3ZGVlMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmNWY3ZjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(50%,#e5ebee), color-stop(51%,#d7dee3), color-stop(100%,#f5f7f9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f6f8f9 0%,#e5ebee 50%,#d7dee3 51%,#f5f7f9 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-8 */
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #b1b1b1;
+	display:inline-block;
+	color:#616161;
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:5px 8px;
+	text-decoration:none;
 }
-.forumng-discussion-short.forumng-deselected  td {
-    color: #CCC;
+#forumng-features form input[type="submit"]:hover {
+background: #f2f6f8; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyZjZmOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2Q4ZTFlNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iI2I1YzZkMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMGVmZjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f6f8), color-stop(50%,#d8e1e7), color-stop(51%,#b5c6d0), color-stop(100%,#e0eff9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-8 */
+
+color:#414141;
 }
-.forumng-discussion-short td .dselectorcheck {
-    float: left;
+#forumng-features form input[type="submit"]:active {
+	position:relative;
+	top:1px;
 }
+
+.forumng-discussionlist th  a{color:#efefef; text-decoration:none;}
+.forumng-discussionlist th  a:hover{color:#FFF;}
+
+#teachericon{background-color:#eaeaea; top:-32px; right:5px; position:relative; z-index:1000; width:24px; height:24px;}
+
+.forumng-discussionlist #teachericon { top: 0px; width: 16px; height: 16px;}

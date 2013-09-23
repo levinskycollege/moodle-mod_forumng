@@ -14,17 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 /**
- * Version.
- *
- * @package mod_forumng
- * @copyright 2012 The Open University
+ * Local lib for ForumNG
+ * @package mod
+ * @subpackage forumng
+ * @copyright 2013 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$module->version  = 2013020700;
-$module->requires = 2011120100;
-$module->cron     = 60;
+defined('MOODLE_INTERNAL') || die();
 
-// Note: This should be replaced with standard ->maturity and other options.
-$module->displayversion = 'Unstable development version (use at own risk)';
+@include_once($CFG->dirroot . '/mod/forumng/feature/export/portfoliolib.php');

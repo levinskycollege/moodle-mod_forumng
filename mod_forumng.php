@@ -773,6 +773,16 @@ WHERE
         }
     }
 
+    public function num_unread_discussions() {
+        if (isset($this->forumfields->numunreaddiscussions)) {
+            return $this->forumfields->numunreaddiscussions;
+        } else if (isset($this->forumfields->hasunreaddiscussions)) {
+            return $this->forumfields->hasunreaddiscussions;
+        } else {
+            throw new coding_exception('Unread discussion flag not obtained');
+        }
+        return 0;
+    }
     /**
      * @return int Max bytes for attachments or -1 if upload is prevented
      */
@@ -3340,8 +3350,7 @@ WHERE
             return $out->render_post_button($this, $groupid);
         } else {
             if ($whynot) {
-                return '<p class="forumng-cannotstartdiscussion">' .
-                    get_string($whynot, 'forumng') . '</p>';
+                return $out->cannot_start_discussion_error($whynot);
             } else {
                 return '';
             }

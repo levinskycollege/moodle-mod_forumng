@@ -432,7 +432,7 @@ function mod_forumng_cm_info_view(cm_info $cm) {
     if (array_key_exists($cm->instance, $forums)) {
         if ($forums[$cm->instance]->has_unread_discussions()) {
             $cm->set_after_link('<span class="unread">' .
-                    get_string('hasunreadposts', 'forumng') . '</span>');
+                    get_string('hasunreadposts', 'forumng', strval($forums[$cm->instance]->num_unread_discussions())) .'</span>');
         }
     }
 }

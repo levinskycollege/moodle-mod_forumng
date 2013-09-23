@@ -170,16 +170,19 @@ M.mod_forumng = {
 
         // Apply stop indents
         this.apply_stop_indents();
-        var region = YAHOO.util.Dom.getRegion(document.getElementById('forumng-main'));
+        var region = this.Y.one('#forumng-main').get('region');
         this.viewportwidth = region.right - region.left;
+
+/*	todo: error not working Y.one -
         setInterval(function() {
-            var region = YAHOO.util.Dom.getRegion(document.getElementById('forumng-main'));
+            var region = this.Y.one('#forumng-main').get('region');
             var width = region.right - region.left;
             if (width != M.mod_forumng.viewportwidth) {
                 M.mod_forumng.viewportwidth = width;
                 M.mod_forumng.apply_stop_indents();
             }
         }, 250);
+*/
     },
 
     /**
@@ -849,19 +852,15 @@ M.mod_forumng = {
      */
     links_disable: function(root) {
         root.linksdisabled = true;
-        var commandblocks = YAHOO.util.Dom.getElementsByClassName(
-            'forumng-commands', 'ul', root);
-        for (var i=0; i<commandblocks.length; i++) {
-            var links = commandblocks[i].getElementsByTagName('a');
-            for (var j=0; j<links.length; j++) {
-                links[j].oldonclick = links[j].onclick;
-                links[j].onclick = function() {
-                    return false;
-                }
-                links[j].style.cursor = 'default';
-                links[j].tabIndex = -1;
-                links[j].className += ' forumng-disabled';
-            }
+        var links = M.mod_forumng.Y.all('ul.forumng-commands a').getDOMNodes();
+        for (var j = 0, len = links.length; j < len; j++) {
+            links[j].oldonclick = links[j].onclick;
+            links[j].onclick = function() {
+                return false;
+            };
+            links[j].style.cursor = 'default';
+            links[j].tabIndex = -1;
+            links[j].className += ' forumng-disabled';
         }
     },
 
@@ -871,21 +870,17 @@ M.mod_forumng = {
      */
     links_enable: function(root) {
         root.linksdisabled = false;
-        var commandblocks = YAHOO.util.Dom.getElementsByClassName(
-            'forumng-commands', 'ul', root);
-        for (var i=0; i<commandblocks.length; i++) {
-            var links = commandblocks[i].getElementsByTagName('a');
-            for (var j=0; j<links.length; j++) {
+        var links = M.mod_forumng.Y.all('ul.forumng-commands a').getDOMNodes();
+        for (var j=0, len = links.length; j < len; j++) {
                 if (links[j].oldonclick) {
                     links[j].onclick = links[j].oldonclick;
                     links[j].oldonclick = false; // Wanted to do 'delete' but it crashes ie
                 } else {
-                    links[j].onclick = false;
-                }
-                links[j].style.cursor = 'auto';
-                links[j].tabIndex = 0;
-                links[j].className = links[j].className.replace(' forumng-disabled', '');
+                links[j].onclick = function(){};
             }
+            links[j].style.cursor = 'auto';
+            links[j].tabIndex = 0;
+            links[j].className = links[j].className.replace(' forumng-disabled', '');
         }
     },
 
@@ -1327,6 +1322,28 @@ M.mod_forumng = {
     },
 
     /**
+     * AJAX response: Delete completes OK / Set rating completes OK.
+     * @param transactionid YUI transaction id
+     * @param o YUI response object
+     * @param link Link (for delete) or div (for rating), which contains a '.post' variable
+     *   for the post object
+     */
+    ws_disscussiontree_ok : function(transactionid, o, link) {
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = o.responseText;
+        var newpost = newDiv.firstChild;
+        // Post may be blank when deleting (if not admin)
+        if (newpost) {
+            newpost = this.Y.one(newpost);
+            link.post.get('parentNode').insertBefore(newpost, link.post);
+        }
+        link.post.remove();
+        if (newpost) {
+            this.init_content(newpost);
+        }
+    },
+
+    /**
      * AJAX response: Delete fails / Set rating fails.
      * @param transactionid YUI transaction id
      * @param o YUI response object
@@ -1513,6 +1530,28 @@ M.mod_forumng = {
 
         // Init feature buttons
         this.init_feature_buttons(true);
+        if (document.getElementsByClassName('discussiontreeicons')) {
+            var list = document.getElementsByClassName('discussiontreeicons');
+            for (var i = 0; i < list.length-1; i++) {
+                console.log(list[i].id);
+                this.Y.one(list[i]).on('click',function(e){
+                    //alert( 'hi' );
+                    var cfg = {
+                        method: 'POST',
+                        data: 'did=' + list[i].id.substr(4),
+                        timeout: 10000,
+                        context: M.mod_forumng,
+                        arguments: list[i],
+                        on: {
+                            success: M.mod_forumng.ws_disscussiontree_ok,
+                            failure: M.mod_forumng.delete_error
+                        }
+                    };
+                    M.mod_forumng.Y.io('ws_disscussiontree.php', cfg);
+                });
+            }
+            return;
+        }
     },
 
     /**

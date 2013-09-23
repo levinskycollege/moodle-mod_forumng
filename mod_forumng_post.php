@@ -346,9 +346,14 @@ WHERE
             $text = preg_replace('~([\'"]@@PLUGINFILE@@[^\'"?]+)([\'"])~',
                     '$1?clone=' . $forum->get_course_module_id() . '$2', $text);
         }
+        $id = $this->get_id();
+        if ($this->is_old_version()) {
+            // If old version get id of parent post as images stored against this.
+            $id = $this->get_parent()->get_id();
+        }
         $context = $forum->get_context(true);
         $text = file_rewrite_pluginfile_urls($text, 'pluginfile.php',
-            $context->id, 'mod_forumng', 'message', $this->postfields->id);
+            $context->id, 'mod_forumng', 'message', $id);
         $textoptions = new stdClass();
         // Don't put a <p> tag round post
         $textoptions->para = false;
@@ -2210,8 +2215,16 @@ WHERE
    /** @return string User picture HTML (for post author) */
    function display_user_picture() {
        $out = mod_forumng_utils::get_renderer();
+       // Display teacher icon if the user is a teacher  (nadavkav 13-5-2013)
+       if (has_capability('moodle/course:manageactivities', $this->get_forum()->get_context(), $this->get_user()->id)) {
+           $roleimage = '<img height=16 width=16 src="pix/teacher.png" id="teachericon">';
+       } else {
+           $roleimage = ''; // student, no need to display any indication
+       }
+
        return $out->user_picture($this->get_user(),
-               array('courseid'=>$this->get_forum()->get_course_id()));
+               array('courseid'=>$this->get_forum()->get_course_id())).$roleimage;
+           ;
    }
 
    /**
