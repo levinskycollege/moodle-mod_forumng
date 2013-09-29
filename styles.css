@@ -1013,7 +1013,7 @@ padding-top: 1em;
 
 #page-mod-forumng-view.dir-rtl .generaltable th {text-align: right;}
 #page-mod-forumng-view .generaltable th {
-    /*background-image: url("http://testmoodle2.levinsky.ac.il/mod/forumng/pix/title_bg_55.png");
+    /*background-image: url("[[pix:forumng|title_bg_55]]");
     background-position: left top;
     background-repeat: repeat-x;*/
     height: 44px;
@@ -1052,7 +1052,7 @@ forumng-sortlink th a{color:#efefef;}
 #page-mod-forumng-discuss .forumng-message {background-color: white;padding: 10px;}
 
 #page-mod-forumng-discuss h3.forumng-subject {
-    background-image: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/arrow_box.png);
+    background-image: url([[pix:forumng|arrow_box]]);
     background-repeat: no-repeat;
     background-position: right top;
     padding-right: 22px;
@@ -1081,7 +1081,7 @@ forumng-sortlink th a{color:#efefef;}
 .forumng-subject{color:#464646;}
 #page-mod-forumng-view .generalbox .box {border:none;}
 #page-mod-forumng-view .no-overflow{background-color:#fefefe; width:100%; height: 128px; border:none;}
-.forumng-post-button input[type="submit"] { width:280px; height:55px; background:url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/create_discussion_small.png) top left no-repeat; border:none; margin-left: 0px;}
+.forumng-post-button input[type="submit"] { width:280px; height:55px; background:url([[pix:forumng|create_discussion_small]]) top left no-repeat; border:none; margin-left: 0px;}
 /*#page-mod-forumng-view .generaltable th {text-align: right;}
 */
 
@@ -1128,7 +1128,7 @@ forumng-sortlink th a{color:#efefef;}
 #page-mod-forumng-discuss .forumng-attachments li a:hover {text-decoration: underline; font-size:14px; /* eran 02 apr 2013 */}
 #page-mod-forumng-discuss ul.forumng-commands li a {color: #3f5a11; font-size:14px; /* eran 02 apr 2013 */}
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-edit {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/edit.png) top right no-repeat;
+    background: url([[pix:forumng|edit]]) top right no-repeat;
     border:none;
     margin-left: 8px;
     padding-right: 20px;
@@ -1136,7 +1136,7 @@ forumng-sortlink th a{color:#efefef;}
     vertical-align: middle;}
 
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-replylink {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/add_post.png) top right no-repeat;
+    background: url([[pix:forumng|add_post]]) top right no-repeat;
     border:none;
     margin-left: 8px;
     padding-right: 23px;
@@ -1144,7 +1144,7 @@ forumng-sortlink th a{color:#efefef;}
     vertical-align: middle;}
 
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-alert {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/alert.png) top right no-repeat;
+    background: url([[pix:forumng|alert]]) top right no-repeat;
     border:none;
     margin-left: 8px;
     padding-right: 23px;
@@ -1152,7 +1152,7 @@ forumng-sortlink th a{color:#efefef;}
     vertical-align: middle;}
 
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-permalink {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/permalink.png) top right no-repeat;
+    background: url([[pix:forumng|permalink]]) top right no-repeat;
     border:none;
     margin-left: 8px;
     padding-right: 23px;
@@ -1160,7 +1160,7 @@ forumng-sortlink th a{color:#efefef;}
     vertical-align: middle;}
 
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-split {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/split.png) top right no-repeat;
+    background: url([[pix:forumng|split]]) top right no-repeat;
 	font-size:14px; /* eran 02 apr 2013 */
     border:none;
     margin-left: 8px;
@@ -1169,7 +1169,7 @@ forumng-sortlink th a{color:#efefef;}
     vertical-align: middle;}
 
 #page-mod-forumng-discuss ul.forumng-commands li.forumng-delete {
-    background: url(http://testmoodle2.levinsky.ac.il/mod/forumng/pix/delete.png) top right no-repeat;
+    background: url([[pix:forumng|delete]]) top right no-repeat;
     border:none;
     margin-left: 8px;
     padding-right: 23px;
